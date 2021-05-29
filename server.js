@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 3000;
 const User = require('./models/user');
@@ -23,6 +23,8 @@ const routes = require('./routes/routes');
 const secureRoute = require('./routes/secure-routes');
 
 const app = express();
+
+app.use(cors());
 
 app.use('/', routes);
 

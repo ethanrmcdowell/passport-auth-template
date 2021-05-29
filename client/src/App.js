@@ -9,9 +9,13 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path='/login' component={Login} />
+        <Route exact path='/' component={Login} />
         <Route exact path='/signup' component={Signup} />
-        <Route exact path='/dashboard' component={Dashboard} />
+        <Route
+          exact
+          path='/user/dashboard?secret_token=:'
+          component={Dashboard}
+        />
       </Switch>
     </Router>
   );
