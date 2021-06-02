@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { signupData } from '../../actions';
 
 const Signup = props => {
   const [user, setUser] = useState({ email: '', password: '' });
@@ -13,16 +11,21 @@ const Signup = props => {
 
   const onSubmit = e => {
     e.preventDefault();
-    axios
-      .post(
-        `http://localhost:3000/signup?email=${user.email}&password=${user.password}`
-      )
-      .then(response => {
-        dispatchEvent(signupData('yo this worked'));
-      })
-      .catch(error => {
-        setSignupMessage('Error signing up');
-      });
+
+    // axios
+    //   .post(
+    //     `http://localhost:3000/signup?email=${user.email}&password=${user.password}`
+    //   )
+    //   .then(user => {
+    //     dispatch(signupData(user));
+    //   })
+    //   .catch(error => {
+    //     setSignupMessage('Error signing up');
+    //   });
+  };
+
+  const testHandler = e => {
+    e.preventDefault();
   };
 
   return (
@@ -45,8 +48,9 @@ const Signup = props => {
       </form>
       <p>{signupMessage}</p>
       <p>
-        Already have an account? <a href='/login'>Login!</a>
+        Already have an account? <a href='/'>Login!</a>
       </p>
+      <button onClick={testHandler}>Test</button>
     </>
   );
 };

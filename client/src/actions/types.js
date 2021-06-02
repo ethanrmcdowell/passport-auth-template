@@ -1,1 +1,0 @@
-export const USER_SIGNUP_DATA = 'USER_SIGNUP_DATA';

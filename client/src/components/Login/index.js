@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 const Login = props => {
-  const [user, setUser] = useState({ email: '', password: '' });
+  const [user, setUser] = useState({ email: '', password: '', jwtToken: '' });
   const [loginMessage, setLoginMessage] = useState('');
+
+  const dispatch = useDispatch();
+  const userInfo = useSelector(state => state);
 
   const onChange = e => {
     e.preventDefault();
@@ -17,12 +21,17 @@ const Login = props => {
         `http://localhost:3000/login?email=${user.email}&password=${user.password}`
       )
       .then(response => {
-        const token = response.data.token;
-        props.history.push(`/dashboard`);
-      })
-      .catch(error => {
-        setLoginMessage('Error logging in!');
+        dispatch({
+          type: 'userLogin',
+          email: user.email,
+          password: user.password,
+          jwtToken: response.data.token,
+        });
       });
+  };
+
+  const debugHandler = () => {
+    console.log(userInfo);
   };
 
   return (
@@ -43,6 +52,7 @@ const Login = props => {
       <p>
         Don't have an account? <a href='/signup'>Sign up!</a>
       </p>
+      <button onClick={debugHandler}>Check if Redux worked!</button>
     </>
   );
 };

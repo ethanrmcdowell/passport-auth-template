@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/dashboard', (req, res, next) => {
-  console.log('Hello?');
   res.json({
     message: 'You made it to the secure route',
     user: req.user,

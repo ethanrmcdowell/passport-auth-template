@@ -39,3 +39,5 @@ router.post('/login', async (req, res, next) => {
 });
 
 module.exports = router;
+
+router.post('/signup', async (req, res, next) => {});
