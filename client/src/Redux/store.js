@@ -7,16 +7,23 @@ const initialState = {
   password: '',
   jwtToken: '',
   loggedIn: false,
+  testWorks: false,
 };
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'userLogin':
       return {
+        ...state,
         email: action.email,
         password: action.password,
         jwtToken: action.jwtToken,
         loggedIn: true,
+      };
+    case 'testRedux':
+      return {
+        ...state,
+        testWorks: true,
       };
     default:
       return state;

@@ -39,7 +39,8 @@ const Login = props => {
       });
   };
 
-  const debugHandler = () => {
+  const storeHandler = e => {
+    e.preventDefault();
     console.log(userInfo);
   };
 
@@ -61,7 +62,7 @@ const Login = props => {
       <p>
         Don't have an account? <a href='/signup'>Sign up!</a>
       </p>
-      <button onClick={debugHandler}>Check if Redux worked!</button>
+      <button onClick={storeHandler}>Log Redux Store</button>
     </>
   );
 };
