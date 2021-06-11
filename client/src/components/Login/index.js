@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = props => {
@@ -61,6 +60,9 @@ const Login = props => {
       <p>{loginMessage}</p>
       <p>
         Don't have an account? <a href='/signup'>Sign up!</a>
+      </p>
+      <p>
+        Already logged in? Head to your <a href='/dashboard'>dashboard</a>!
       </p>
       <button onClick={storeHandler}>Log Redux Store</button>
     </>

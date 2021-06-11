@@ -25,6 +25,34 @@ passport.use(
 
 // this signup function will save the information provided by the user to the database,
 // will then send the user information to the next middleware if successful.
+
+// const user = await User.create({ email, password });
+// return done(null, user);
+
+// passport.use(
+//   'signup',
+//   new localStrategy(
+//     {
+//       usernameField: 'email',
+//       passwordField: 'password',
+//     },
+//     (req, email, password, done) => {
+// User.findOne({ 'email' : email }), (err, user) => {
+//   if (err) {
+//     return done(err);
+//   } if (user) {
+//     return done(null, false, req.flash('message', 'That e-mail address has already been used.'))
+//   } else {
+//     const user = await User.create({ email, password });
+//     return done(null, user);
+//   } catch (error) {
+//     return done(error);
+//   }
+//       }
+//     }
+//   )
+// );
+
 passport.use(
   'signup',
   new localStrategy(
@@ -34,10 +62,18 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = await User.create({ email, password });
-        return done(null, user);
+        const user = await User.findOne({ email: 'email' });
+
+        if (user) {
+          return done(null, false, { message: 'User alraedy exists!' });
+        } else if (!user) {
+          const user = await User.create({ email, password });
+          return done(null, user);
+        } else {
+          return done(null, false, { message: 'OTHER error!' });
+        }
       } catch (error) {
-        done(error);
+        return done(error);
       }
     }
   )

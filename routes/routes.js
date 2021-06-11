@@ -6,14 +6,29 @@ const router = express.Router();
 
 router.post(
   '/signup',
-  passport.authenticate('signup', { session: false }),
-  async (req, res, next) => {
+  passport.authenticate('signup', {
+    session: false,
+    successRedirect: '/',
+    failureRedirect: '/signup',
+  }),
+  (req, res, err) => {
     res.json({
       message: 'Success!',
       user: req.user,
     });
   }
 );
+
+// router.post(
+//   '/signup',
+//   passport.authenticate('signup', { session: false }),
+//   (req, res, err) => {
+//     res.json({
+//       message: 'Success!',
+//       user: req.user,
+//     });
+//   }
+// );
 
 router.post('/login', async (req, res, next) => {
   passport.authenticate('login', async (err, user, info) => {
@@ -39,5 +54,3 @@ router.post('/login', async (req, res, next) => {
 });
 
 module.exports = router;
-
-router.post('/signup', async (req, res, next) => {});

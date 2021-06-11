@@ -1,0 +1,9 @@
+body {
+  background: #c8c6a7;
+}
+
+.signupMessage {
+  left: 350px;
+  position: absolute;
+  color: red;
+}

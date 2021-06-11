@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 const Dashboard = props => {
   const userInfo = useSelector(state => state);
   const dispatch = useDispatch();
-  const testHandler = e => {
+  const logoutHandler = async e => {
     e.preventDefault();
-    dispatch({ type: 'testRedux' });
+    await dispatch({ type: 'userLogout' });
+    props.history.push('/');
   };
 
   const storeHandler = e => {
@@ -17,7 +18,7 @@ const Dashboard = props => {
   return (
     <>
       <h2>This is the secure dashboard! You're logged in {userInfo.email}!!</h2>
-      <button onClick={testHandler}>Test Redux</button>
+      <button onClick={logoutHandler}>Logout</button>
       <button onClick={storeHandler}>Log Redux Store</button>
     </>
   );
