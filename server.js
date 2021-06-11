@@ -3,20 +3,17 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const cors = require('cors');
 
-const PORT = process.env.PORT || 3000;
+require('dotenv').config();
+const PORT = process.env.PORT;
 const User = require('./models/user');
 const app = express();
 
-mongoose.connect(
-  process.env.MONGODB_URI ||
-    'mongodb+srv://ethanrmcdowell:hotchkiss89@cluster0.cmkyl.mongodb.net/feels-good?retryWrites=true&w=majority',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  }
-);
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 
 const path = require('path');
 const publicPath = path.join(__dirname, '/client/public');
