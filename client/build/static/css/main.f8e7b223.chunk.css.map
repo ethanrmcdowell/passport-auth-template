@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/style.css"],"names":[],"mappings":"AAAA,KACE,kBACF,CAEA,eACE,UAAW,CACX,iBAAkB,CAClB,SACF","file":"main.f8e7b223.chunk.css","sourcesContent":["body {\n  background: #c8c6a7;\n}\n\n.signupMessage {\n  left: 350px;\n  position: absolute;\n  color: red;\n}\n"]}
