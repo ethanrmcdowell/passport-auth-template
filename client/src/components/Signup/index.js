@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 const Signup = props => {
   const [user, setUser] = useState({ email: '', password: '' });
   const [signupMessage, setSignupMessage] = useState('');
 
-  const dispatch = useDispatch();
-  const userInfo = useSelector(state => state);
+  // const dispatch = useDispatch();
+  // const userInfo = useSelector(state => state);
 
   const onChange = e => {
     e.preventDefault();
