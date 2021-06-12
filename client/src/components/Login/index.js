@@ -33,8 +33,8 @@ const Login = props => {
       })
       .then(() => {
         props.history.push('/dashboard');
-      }).catch(error => setLoginMessage("Error!"));
-      }
+      })
+      .catch(error => setLoginMessage('Error!'));
   };
 
   const storeHandler = e => {
