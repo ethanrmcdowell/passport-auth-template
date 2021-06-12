@@ -4,7 +4,6 @@ import axios from 'axios';
 
 const Login = props => {
   const [user, setUser] = useState({ email: '', password: '', jwtToken: '' });
-  const [loggedIn, setLoggedIn] = useState(false);
   const [loginMessage, setLoginMessage] = useState('');
 
   const dispatch = useDispatch();
@@ -23,7 +22,6 @@ const Login = props => {
       )
       .then(response => {
         if (response) {
-          setLoggedIn(true);
           dispatch({
             type: 'userLogin',
             email: user.email,
@@ -35,7 +33,8 @@ const Login = props => {
       })
       .then(() => {
         props.history.push('/dashboard');
-      });
+      }).catch(error => setLoginMessage("Error!"));
+      }
   };
 
   const storeHandler = e => {
