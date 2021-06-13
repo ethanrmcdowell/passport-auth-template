@@ -21,7 +21,9 @@ const Signup = props => {
       setSignupMessage('Passwords do not match');
     } else {
       await axios
-        .post(`/signup?email=${user.email}&password=${user.password}`)
+        .post(
+          `https://thirsty-mayer-853aec.netlify.app/signup?email=${user.email}&password=${user.password}`
+        )
         .then(response => {
           console.log(response);
         })

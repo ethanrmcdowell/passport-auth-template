@@ -17,7 +17,9 @@ const Login = props => {
   const onSubmit = e => {
     e.preventDefault();
     axios
-      .post(`/login?email=${user.email}&password=${user.password}`)
+      .post(
+        `https://thirsty-mayer-853aec.netlify.app/login?email=${user.email}&password=${user.password}`
+      )
       .then(response => {
         if (response) {
           dispatch({
