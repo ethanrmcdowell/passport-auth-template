@@ -17,9 +17,7 @@ const Login = props => {
   const onSubmit = e => {
     e.preventDefault();
     axios
-      .post(
-        `http://localhost:3000/login?email=${user.email}&password=${user.password}`
-      )
+      .post(`/login?email=${user.email}&password=${user.password}`)
       .then(response => {
         if (response) {
           dispatch({

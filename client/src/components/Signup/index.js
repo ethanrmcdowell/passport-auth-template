@@ -21,9 +21,7 @@ const Signup = props => {
       setSignupMessage('Passwords do not match');
     } else {
       await axios
-        .post(
-          `http://localhost:3000/signup?email=${user.email}&password=${user.password}`
-        )
+        .post(`/signup?email=${user.email}&password=${user.password}`)
         .then(response => {
           console.log(response);
         })
