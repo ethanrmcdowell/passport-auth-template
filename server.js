@@ -5,31 +5,35 @@ const cors = require('cors');
 
 require('dotenv').config();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const User = require('./models/user');
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+mongoose.connect(
+  process.env.MONGODB_URI ||
+    'mongodb+srv://ethanrmcdowell:hotchkiss89@cluster0.cmkyl.mongodb.net/feels-good?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
+);
 
-const path = require('path');
-const publicPath = path.join(__dirname, '/client/public');
-app.use(express.static(publicPath));
+// const path = require('path');
+// const publicPath = path.join(__dirname, '/client/public');
+// app.use(express.static(publicPath));
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(publicPath, 'index.html'));
 // });
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('client/build'));
-//   const path = require('path');
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'client', 'public', 'index.html'));
-//   });
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'public', 'index.html'));
+  });
+}
 
 require('./auth/auth');
 
@@ -40,7 +44,11 @@ app.use(cors());
 
 app.use('/', routes);
 
-app.use('/user', passport.authenticate('jwt', { session: false }), secureRoute);
+app.use(
+  '/login',
+  passport.authenticate('jwt', { session: false }),
+  secureRoute
+);
 
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);

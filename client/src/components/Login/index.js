@@ -14,14 +14,15 @@ const Login = props => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
-    // axios
-    //   .post(
-    //     `https://thirsty-mayer-853aec.netlify.app/login?email=${user.email}&password=${user.password}`
-    //   )
-    axios
-      .post('/login', user)
+    await axios
+      // .post(
+      //   `http://localhost:3000/login?email=${user.email}&password=${user.password}`
+      // )
+      .post(
+        `https://thirsty-mayer-853aec.netlify.app/login?email=${user.email}&password=${user.password}`
+      )
       .then(response => {
         if (response) {
           dispatch({
