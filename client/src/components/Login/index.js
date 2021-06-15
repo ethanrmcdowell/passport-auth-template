@@ -17,12 +17,12 @@ const Login = props => {
   const onSubmit = async e => {
     e.preventDefault();
     await axios
-      // .post(
-      //   `http://localhost:3000/login?email=${user.email}&password=${user.password}`
-      // )
       .post(
-        `https://thirsty-mayer-853aec.netlify.app/login?email=${user.email}&password=${user.password}`
+        `http://localhost:3000/login?email=${user.email}&password=${user.password}`
       )
+      // .post(
+      //   `https://thirsty-mayer-853aec.netlify.app/login?email=${user.email}&password=${user.password}`
+      // )
       .then(response => {
         if (response) {
           dispatch({

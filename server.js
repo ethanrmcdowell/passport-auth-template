@@ -20,20 +20,17 @@ mongoose.connect(
   }
 );
 
-// const path = require('path');
-// const publicPath = path.join(__dirname, '/client/public');
-// app.use(express.static(publicPath));
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(publicPath, 'index.html'));
-// });
+const path = require('path');
+const publicPath = path.join(__dirname, '/client/public');
+app.use(express.static(publicPath));
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-  const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'public', 'index.html'));
-  });
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'));
+//   const path = require('path');
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'client', 'public', 'index.html'));
+//   });
+// }
 
 require('./auth/auth');
 
@@ -53,6 +50,10 @@ app.use(
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.json({ error: err });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 app.listen(PORT, () => {
